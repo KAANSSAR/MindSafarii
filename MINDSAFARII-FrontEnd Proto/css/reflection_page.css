@@ -1,0 +1,345 @@
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 17.5%;
+    background-color: #ffffff;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    box-shadow: 10px 10px 10px rgb(173, 170, 170);
+  }
+
+.logo 
+{
+    height : 7rem;
+    width : 7rem;
+    padding-left: 25%;
+    margin-right: 10px;
+    
+}
+
+.logo img
+{
+    width: 100%;
+    height: 100%;
+    
+}
+
+.mindsafari_text {
+    width: 10rem;
+    height: 2rem;
+    font-family: 'Dosis';
+    font-style: normal;
+    font-weight: 750;
+    font-size: 20px;
+    line-height: 20px;
+    color: #313131;
+    margin-left: 27%;
+
+}
+
+.home{
+    display: flex;
+    margin-top: 25%;
+}
+
+.home_text{
+    margin-top: 2.5%;
+}
+.home_text a{
+    width: 10rem;
+    height: 2rem;
+    font-family: 'Dosis';
+    font-style: normal;
+    font-weight: 650;
+    font-size: 20px;
+    line-height: 20px;
+    /*color: #313131;*/
+    color: #9f9a9a;
+    text-decoration: none;
+    
+}
+
+.home_image{
+    
+    margin-right: 10%;
+    margin-left: 10%;
+    margin-top: 5px;
+}
+
+.home_image img{
+    width : 75%;
+    
+}
+
+.reflection{
+    display: flex;
+    margin-top : 5%;
+    
+}
+
+.reflection_text a{
+    width: 10rem;
+    height: 2rem;
+    font-family: 'Dosis';
+    font-style: normal;
+    font-weight: 650;
+    font-size: 20px;
+    line-height: 20px;
+    /*color: #9f9a9a;*/
+    color: #313131;
+ 
+}
+
+.reflection_text{
+    margin-top: 2%;
+}
+.reflection_image{
+    
+    margin-right: 6%;
+    margin-left: 10%;
+    margin-top: 5px;
+}
+
+.reflection_image img{
+    width: 75%
+}
+
+
+.mood_tracker{
+    display: flex;
+    margin-top : 5%;
+    
+   
+}
+
+.mood_tracker_text a{
+    width: 10rem;
+    height: 2rem;
+    font-family: 'Dosis';
+    font-style: normal;
+    font-weight: 650;
+    font-size: 20px;
+    line-height: 20px;
+    color: #9f9a9a;
+}
+
+.mood_tracker_text{
+    width : 50%;
+    margin-top: 2.3%;
+}
+
+.mood_tracker_image{
+    
+    margin-right: 10px;
+    margin-left : 8%;
+}
+
+.mood_tracker_image img{
+    width: 75%
+}
+
+.new-entry{
+    margin-top: 20%;
+    margin-left: 25%;
+}
+
+.new-entry button{
+    
+    font-family: 'Dosis';
+    font-style: normal;
+    font-weight: 800;
+    color: azure;
+    font-size: 20px;
+    line-height: 20px;
+    border-radius: 20px;
+    padding : 10px;
+    background-color: #313131;
+}
+
+.back-button {
+    position: absolute; /* Position the button absolutely within its containing element */
+    top: 10px; /* Adjust the top offset as needed */
+    left: 10px; /* Adjust the left offset as needed */
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    border: none;
+    cursor: pointer;
+}
+
+.back-button ion-icon{
+    color: black;
+}
+
+.date-container {
+    font-family: 'Dosis';
+    font-style: normal;
+    font-weight: 650;
+    font-size: 20px;
+    line-height: 20px;
+    color: #313131;
+    text-decoration: none;
+    opacity: 0.7;
+
+    /* Additional styling for .date-container */
+    font-size: 18px;
+    text-align: center;
+    padding: 10px;
+    margin-left: 15%;
+    width: 20%;
+    padding-top: 20px;
+}
+
+.reflection-text {
+    font-family: 'Dosis';
+    font-size: 1.5em;
+    text-align: left;
+    margin-left: 10.5%;
+    opacity: 0.8;
+    font-weight: 600;
+
+   white-space: nowrap;
+}
+
+.change-prompt {
+    text-align: right;
+    margin-right: 8%;
+    width: 35%;
+    height: 35%;
+    margin-top: 7px;
+}
+
+.change-prompt img {
+    transition: opacity 0.3s;
+    opacity: 1.0;
+}
+
+.change-prompt:hover img {
+    opacity: 0.8;
+}
+
+.change-prompt:active img {
+    opacity: 1.5;
+}
+
+.reflection-answer {
+    font-family: 'Dosis';
+    border: none;
+    outline: none;
+    width: 35%;
+    height: 35%;
+    font-size: 1.5em;
+    text-align: left;
+    margin-left: 20%;
+    opacity: 0.8;
+    font-weight: 600;
+    margin-top: 25px;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Push the background behind other content */
+}
+
+.red-bg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 85%; /* Adjust the width as needed */
+    height: 99%; /* Adjust the height as needed */
+    background-color: red;
+    z-index: -1;
+}
+
+.white-bg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 81.8%; /* Adjust the width as needed */
+    height: 88.2%; /* Adjust the height as needed */
+    background-color: white;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    z-index: -1;
+}
+
+.journal-month{
+    font-family: 'Dosis';
+    color: white;
+    font-size: 1.2em;
+    text-align: left;
+    margin-left: 22%;
+    opacity: 1.0;
+    font-weight: 600;
+}
+
+.cross-button{
+    position: fixed;
+    top: 45px; /* Adjust top position as needed */
+    right: 60px; /* Adjust right position as needed */
+    width: 30px; /* Adjust width as needed */
+    height: 30px; /* Adjust height as needed */
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+   /*background-color: #ccc;*/
+    /*border: 1px solid #999;*/
+    /*border-radius: 50%;*/
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cross-button:hover {
+    opacity: 0.8;
+}
+
+.journal-box {
+    width: 1100px; /* Adjust width as needed */
+    height: 100px; /* Adjust height as needed */
+    background-color: white;
+    border-radius: 30px; /* Adjust border-radius for curved edges */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Box shadow for the glow effect */
+    margin-bottom: 30px;
+
+    position: relative; /* Position the box relative to the nearest positioned ancestor */
+    top: 5%; /* Position the top edge at 50% of the containing element's height */
+    left: 6%; /* Position the left edge at 50% of the containing element's width */
+}
+
+.journal-box .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.journal-box .journal-day {
+    position: absolute;
+    top: 30px;
+    left: 35px;
+    font-size: 30px;
+    font-weight: 600;
+    font-family: 'Dosis', sans-serif; /* Add fallback font for compatibility */
+    color: black;
+    margin-right: 10px; /* Add margin between text and button */
+}
+
+.journal-box .open-entry {
+    position: absolute;
+    display: block;
+    top: 15px;
+    left: 890px;
+    width: 20px; /* Adjust button width as needed */
+    height: 20px; /* Adjust button height as needed */
+}
+
+.journal-box .open-entry:hover {
+    opacity: 0.8;
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="stylesheet" href="css/reflection_page.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li> 
+            <div class = "logo">
+            <image src = "\images\logo.png" ></image> 
+            </div>
+        </li>
+        <li>
+            <div class = "mindsafari_text">
+                <p> Mindsafari </p>
+            </div>
+        </li>
+        <li>
+            <div class = "home">
+                <div class = "home_image">
+                    <image src = "\icons\home_unchosen.png" ></image> 
+                </div>
+                <div class = "home_text">
+                    <a  class = "home_test_link" href="#home">Home</a>
+                </div>                
+            </div>
+            
+        </li>
+        <li>
+            <div class = "reflection">
+                <div class = "reflection_image">
+                    <image src = "\icons\reflection_chosen.png" ></image> 
+                </div>
+                <div class = "reflection_text">
+                    <a class = "reflection_text_link" style="text-decoration:none" href="journal_page.html">Reflection</a>
+                </div>                
+            </div>
+            
+        </li>
+        <li>
+            <div class = "mood_tracker">
+                <div class = "mood_tracker_image">
+                    <image src = "\icons\mood_tracker.png" ></image> 
+                </div>
+                <div class = "mood_tracker_text">
+                    <a class = "mood_tracker_link" style="text-decoration:none" href="emoji_slider.html">Mood Tracker</a>
+                </div>                
+            </div>
+            
+        </li>
+        <!--<li>
+            <div class = "new-entry">
+                <a href="/.html"><button > New Entry </button></a>
+            </div>
+        </li> -->
+      </ul>
+
+    <div class="back-button">
+        <a href="journal_page.html">
+            <ion-icon name="arrow-back-outline"></ion-icon>
+        </a>
+    </div>
+
+    <div class="date-container" id = 'currentDate'>
+        <script>
+            const today = new Date();
+
+            const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+            // Format the date string
+            const formattedDate = `${weekdays[today.getDay()]} - ${today.getDate()} ${months[today.getMonth()]} ${today.getFullYear()}`;
+
+            // Update the content of the div element with the formatted date
+            document.getElementById('currentDate').textContent = formattedDate;
+        </script>
+    </div>
+
+    <div class="reflection-text">
+        <div id="question-container" class="reflection-text"></div>
+    </div>
+
+    <div class="change-prompt">
+        <img id="change-prompt-btn" src="images/changePrompt.png" alt="Change Prompt" class="change-prompt"> 
+    </div>
+
+    <div>
+        <form>
+            <input type="text" id="userInput" class="reflection-answer" placeholder="I am thankful for...">
+        </form>
+    </div>
+
+    <script src="reflectionPrompt.js"></script>
+
+      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>     
+</body>
+</html>

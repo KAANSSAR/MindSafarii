@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+  <title>Loading...</title>
+  <style>
+    .dosis-type {
+    font-family: "Dosis", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+  }
+    @keyframes bounce {
+    0%, 100% {
+        transform: translateY(10px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #fff;
+      font-family: 'Dosis';
+    }
+    .dot {
+      height: 20px;
+      width: 20px;
+      background-color: #3498db;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0 5px;
+      animation: bounce 1.4s ease infinite;
+      transform: translateY(10px);
+    }
+    .dot:nth-child(1){
+        animation-delay: -0.3s;
+    }
+    .dot:nth-child(2){
+        animation-delay: -0.1s;
+    }
+    .loading-text {
+      margin-bottom: 20px;
+      font-family: 'Dosis';
+      font-weight: 700;
+      font-size: 35px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="loading-text">On our way to the Zoo!</div>
+<div>
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+</div>
+
+<script>
+    setTimeout(function() {
+      window.location.href = 'Calendar_page.html';
+    }, 5000);
+  </script>
+
+</body>
+</html>

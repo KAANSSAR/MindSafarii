@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emoji Carousel with Captions</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+  <style>
+
+.dosis-type {
+    font-family: "Dosis", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+    
+    @keyframes pop {
+    0% { transform: scale(0.8); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  } 
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+    .heading-container{
+      text-align: center;
+      margin : 20px 0;
+    }
+    .heading-container h1{
+      font-size: 40px;
+      color: black;
+      font-family: 'Dosis';
+      position: fixed;
+      left: 50%;
+      top : 50px;
+      transform: translateX(-50%)
+    }
+    .swiper-container {
+      width: 80%;
+      overflow: hidden;
+    }
+    .swiper-slide {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 64px;
+      opacity: 0.5;
+      transition: background-color 0.3s, opacity 0.3s ease;
+      transform: scale(0.8);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .swiper-slide.swiper-slide-active {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .swiper-slide.active-emoji {
+    animation: pop 0.6s ease forwards;
+    border-radius: 15rem;
+    opacity: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .swiper-slide.active-emoji::before {
+    content: '';
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 70%;
+    height: 70%;
+    background: radial-gradient(circle, rgba(4, 255, 0, 0) 30%, rgba(135, 240, 131, 0.7) 70%);
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: -1;
+  }
+  .swiper-slide.active-emoji > * {
+      position: relative;
+      z-index: 1;
+  }
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.5);
+      padding: 10px;
+      z-index: 1;
+      font-size: 24px;
+    }
+    .arrow.left {
+      left: 10px;
+    }
+    .arrow.right {
+      right: 10px;
+    }
+    .caption {
+      margin-top: 10px;
+      font-size: 18px;
+      font-family: 'Dosis';
+      font-weight: 800;
+    }
+    .choose-btn {
+      font-family: 'Dosis';
+      display: block;
+      width : 170px;
+      padding : 10px 20px;
+      margin : 50px auto;
+      font-size : 20px;
+      font-weight: 300;
+      background-color: #007bff;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      outline: none;
+      transition: background-color 0.3s ease;
+      position: fixed;
+      left: 50%;
+      bottom: 40px;
+      transform: translateX(-50%);
+      color: white;
+      font-family:inherit;
+    }
+    .choose-btn:hover {
+  background-color: #75b9f1;
+    }
+  </style>
+</head>
+<body>
+  <div class="heading-container">
+    <h1>How are you feeling today?</h1>
+  </div>
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide">
+      😊
+      <div class="caption">Happy</div>
+    </div>
+    <div class="swiper-slide">
+      😂
+      <div class="caption">Laughing</div>
+    </div>
+    <div class="swiper-slide">
+      😍
+      <div class="caption">Heart Eyes</div>
+    </div>
+    <div class="swiper-slide">
+      😎
+      <div class="caption">Cool</div>
+    </div>
+    <div class="swiper-slide">
+      😜
+      <div class="caption">Winking</div>
+    </div>
+    <div class="swiper-slide">
+      😡
+      <div class="caption">Angry</div>
+    </div>
+    <div class="swiper-slide">
+      🤔
+      <div class="caption">Thinking</div>
+    </div>
+    <div class="swiper-slide">
+      😨
+      <div class="caption">Worried</div>
+    </div>
+    <div class="swiper-slide">
+      🥱
+      <div class="caption">Sleepy</div>
+    </div>
+    <div class="swiper-slide">
+      😴
+      <div class="caption">Sleepy</div>
+    </div>
+    <div class="swiper-slide">
+      🤤
+      <div class="caption">Hungry</div>
+    </div>
+    <div class="swiper-slide">
+      😷
+      <div class="caption">Sick</div>
+    </div>
+  </div>
+  <div class="arrow left" onclick="swiper.slidePrev()">◀</div>
+  <div class="arrow right" onclick="swiper.slideNext()">▶</div>
+</div>
+<button id="ChooseMoodbtn" class="choose-btn">Choose Mood</button>
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+
+  var swiper = new Swiper('.swiper-container', {
+  slidesPerView: 5,
+  spaceBetween: 10,
+  loop: true,
+  centeredSlides: true,
+  slideToClickedSlide: true,
+  grabCursor: true,
+  navigation: {
+    nextEl: '.arrow.right',
+    prevEl: '.arrow.left',
+  },
+  pagination: {
+    el: '.swiper-pagination',
+    type: 'bullets',
+    clickable: true,
+  },
+  // Responsive breakpoints
+  breakpoints: {
+    320: {
+      slidesPerView: 1,
+      spaceBetween: 10,
+    },
+    768: {
+      slidesPerView: 3,
+      spaceBetween: 20,
+    },
+    1024: {
+      slidesPerView: 5,
+      spaceBetween: 30,
+    },
+  },
+  on: {
+    slideChange: function () {
+      this.slides.forEach(function (slide) {
+        slide.classList.remove('active-emoji');
+      });
+      this.slides[this.activeIndex].classList.add('active-emoji');
+    }
+  }
+});
+
+document.getElementById('ChooseMoodbtn').addEventListener('click', function() {
+  var activeSlide = swiper.slides[swiper.activeIndex];
+  var moodCaption = activeSlide.querySelector('.caption').textContent;
+  var moodEmoji = activeSlide.textContent.trim();
+  console.log("Mood chosen:", moodCaption, moodEmoji);
+  window.location.href = 'loading_page.html';
+});
+
+</script>
+
+</body>
+</html>

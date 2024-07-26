@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap" rel="stylesheet">
+<title>Calendar</title>
+<style>
+    body {
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        background: #f7f7f7;
+        
+        padding: 0;
+        display: flex;
+        justify-content: flex-start;
+       
+        height: 100vh;
+        width: 100vw;
+        /* font-size: 30px; */
+        
+    }
+    .mood_header {
+        font-size: 50px;
+        color: #333;
+        display: inline-flex;
+        position: relative;
+    }
+    .notification-bar {
+        background-color: #ff3b30;
+        color: white;
+        border-radius: 10px;
+        padding: 5px 10px;
+        font-size: 16px;
+        /* position: absolute; */
+        /* top: 80px;
+        right: 500px; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 25px;
+        height: 25px;
+        /* transform: translate(50%, -50%); */
+        max-height: 50px; 
+        /* max-width: 50px; */
+        transition: max-width 0.3s ease-in-out;
+    }
+    .details {
+      margin-top : 5px;
+    display: none;
+    }
+
+    .day {
+    padding: 5px;
+    margin: 0 2px;
+    border-radius: 10px;
+    transition: opacity 0.3s ease-in-out 0.6s;
+    }
+
+    .weekday {
+    border: 2px solid orange;
+    background-color: orange;
+    min-height: 25px;
+    min-width: 26px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 0px 5px;
+    }
+
+    .weekend {
+    border: 2px solid grey;
+    background-color: grey;
+    min-height: 25px;
+    min-width: 26px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 0px 5px;
+    
+    }
+
+    .count{
+      margin-top: -3px;
+      margin-left: 3px;
+      
+    }
+
+    
+    .expanded {
+    max-width: 100%;
+    transition: max-width 0.5s ease-in-out;
+    }
+
+    .journal-bar{
+    /* position: absolute; */
+    bottom: 25%;
+    left: 31%;
+    font-size: 30px;
+    }
+
+    .journal-container {
+    padding: 10px 20px;
+    max-width: 700px;
+    position: absolute;
+    left: 30%;
+    bottom: 5%;
+    width: calc(100% - 60px);
+        position: absolute;
+    right: 20px;
+    z-index: 2s;
+    }
+
+    .journal-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        border: 2px solid #ccc;
+    border-radius: 25px;
+    padding:10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+
+    }
+
+    .journal-prompt {
+        margin: 0;
+        flex-grow: 1;
+        font-size: 24px;
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    #journalButton {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+    #journalButton:hover {
+    background-color: #ddd8d88c;
+    color: blue;
+    }
+    .main-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end; 
+    align-items: start;
+    width: 100%;
+    position: relative;
+    margin-left: 50px;
+    padding-top: 500px;
+    }
+
+    .analytics-container {
+    position: absolute;
+    bottom: 35%;
+    right: 140px;
+    width: 200px;
+    margin-top: 10px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 10px;
+    margin: 20px;
+    z-index: 1;
+    margin-right: 20px;
+    }
+    .analytics-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    }
+
+    .analytics-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 12px;
+    }
+
+    .emoji {
+    font-size: 24px;
+    margin-right: 10px;
+    }
+
+    .color-indicator {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    }
+
+    .color-indicator.orange {
+    background-color: orange;
+    border-radius: 5px;
+    }
+
+    .color-indicator.yellow {
+    background-color: yellow;
+    border-radius: 5px;
+    }
+
+    .color-indicator.green{
+    background-color: green;
+    border-radius: 5px;
+    }
+
+    .color-indicator.purple{
+    background-color: purple;
+    border-radius: 5px;
+    }
+
+    .text {
+    flex-grow: 1;
+    }
+
+    .progress-bar-container {
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    width: 100%;
+    height: 10px;
+    }
+
+    .progress-bar {
+    background-color: #FFD700;
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out;
+    }
+
+    /* Calendar*/
+    .calendar{
+      max-width: 100%;
+      margin: 30px 300px;
+      margin-left: 350px;
+      border-radius: 8px;
+      height: 700px;
+    }
+
+    .calendar-body {
+    display: grid;
+    background-color: #e6f7ea;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .calendarH4 {
+    margin: 10px 0px;
+    display: flex;
+  }
+  
+  .day {
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #e6f7ea;
+    font-weight: bold;
+    height: 30px;
+    line-height: 60px;
+    animation: bounce 0.5s infinite alternate; /* Add animation property */
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 17.5%;
+    background-color: #ffffff;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    box-shadow: 10px 10px 10px rgb(173, 170, 170);
+  }
+
+.logo 
+{
+    height : 7rem;
+    width : 7rem;
+    padding-left: 25%;
+    margin-right: 10px;
+    
+}
+
+.logo img
+{
+    width: 100%;
+    height: 100%;
+    
+}
+
+.mindsafari_text {
+    width: 10rem;
+    height: 2rem;
+    font-family: 'Dosis';
+    font-style: normal;
+    font-weight: 750;
+    font-size: 20px;
+    line-height: 20px;
+    color: #313131;
+    margin-left: 27%;
+
+}
+
+.home{
+    display: flex;
+    margin-top: 25%;
+}
+
+.home_text{
+    margin-top: 2.5%;
+}
+.home_text a{
+    width: 10rem;
+    height: 2rem;
+    font-family: 'Dosis';
+    font-style: normal;
+    font-weight: 650;
+    font-size: 20px;
+    line-height: 20px;
+    color: #313131;
+    text-decoration: none;
+    
+}
+
+.home_image{
+    
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+.home_image img{
+    width : 75%;
+    
+}
+
+.reflection{
+    display: flex;
+    margin-top : 5%;
+    
+}
+
+.reflection_text a{
+    width: 10rem;
+    height: 2rem;
+    font-family: 'Dosis';
+    font-style: normal;
+    font-weight: 650;
+    font-size: 20px;
+    line-height: 20px;
+    color: #9f9a9a;
+ 
+}
+
+.reflection_text{
+    margin-top: 2%;
+}
+.reflection_image{
+    
+    margin-right: 6%;
+    margin-left: 10%;
+}
+
+.reflection_image img{
+    width: 75%
+}
+
+
+.mood_tracker{
+    display: flex;
+    margin-top : 5%;
+    
+   
+}
+
+.mood_tracker_text a{
+    width: 10rem;
+    height: 2rem;
+    font-family: 'Dosis';
+    font-style: normal;
+    font-weight: 650;
+    font-size: 20px;
+    line-height: 20px;
+    color: #9f9a9a;
+}
+
+.mood_tracker_text{
+    width : 50%;
+    margin-top: 2.3%;
+}
+
+.mood_tracker_image{
+    
+    margin-right: 10px;
+    margin-left : 10%;
+}
+
+.mood_tracker_image img{
+    width: 75%
+}
+
+.new-entry{
+    margin-top: 20%;
+    margin-left: 25%;
+}
+
+.new-entry button{
+    
+    font-family: 'Dosis';
+    font-style: normal;
+    font-weight: 800;
+    color: azure;
+    font-size: 20px;
+    line-height: 20px;
+    border-radius: 20px;
+    padding : 10px;
+    background-color: #313131;
+}
+
+
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .justifyBetween {
+    justify-content: space-between;
+    display: flex;
+    }
+
+    </style>
+    </head>
+    <body>
+
+      <ul>
+        <li> 
+            <div class = "logo">
+            <image src = "\images\logo.png" ></image> 
+            </div>
+        </li>
+        <li>
+            <div class = "mindsafari_text">
+                <p> Mindsafari </p>
+            </div>
+        </li>
+        <li>
+            <div class = "home">
+                <div class = "home_image">
+                    <image src = "\icons\home.png" ></image> 
+                </div>
+                <div class = "home_text">
+                    <a  class = "home_test_link" href="#home">Home</a>
+                </div>                
+            </div>
+            
+        </li>
+        <li>
+            <div class = "reflection">
+                <div class = "reflection_image">
+                    <image src = "\icons\reflection.png" ></image> 
+                </div>
+                <div class = "reflection_text">
+                    <a class = "reflection_text_link" style="text-decoration:none" href="#home">Reflection</a>
+                </div>                
+            </div>
+            
+        </li>
+        <li>
+            <div class = "mood_tracker">
+                <div class = "mood_tracker_image">
+                    <image src = "\icons\mood_tracker.png" ></image> 
+                </div>
+                <div class = "mood_tracker_text">
+                    <a class = "mood_tracker_link" style="text-decoration:none" href="#home">Mood Tracker</a>
+                </div>                
+            </div>
+            
+        </li>
+        <li>
+            <div class = "new-entry">
+                <a href="/.html"><button > New Entry </button></a>
+            </div>
+        </li>
+      </ul>
+
+
+      <div class="calendar">
+        <div class="justifyBetween">        
+          <div class="calendarH4"> Your Mood :D</div>
+          <div class="notification-bar" onclick="toggleDetails()">
+            <div class="notification-content">
+              <span class="emoji">🔥</span>
+              <span class="count">5</span>
+            </div>
+            <div class="details" id="details">
+              <span class="weekday">M</span>
+              <span class="weekday">T</span>
+              <span class="weekday">W</span>
+              <span class="weekday">T</span>
+              <span class="weekday">F</span>
+              <span class="weekend">S</span>
+              <span class="weekend">S</span>
+            </div>
+          </div>
+        </div>
+        <div class="calendar-body">
+          <div class="day" onclick="handleDayClick(1)"><span class="emoji" title="😊">😊</span></div>
+          <div class="day" onclick="handleDayClick(2)"><span class="emoji" title="😄">😄</span></div>
+          <div class="day" onclick="handleDayClick(3)"><span class="emoji" title="😍">😍</span></div>
+          <div class="day" onclick="handleDayClick(4)"><span class="emoji" title="😎">😎</span></div>
+          <div class="day" onclick="handleDayClick(5)"><span class="emoji" title="😇">😇</span></div>
+          <div class="day" onclick="handleDayClick(6)"><span class="emoji" title="🤩">🤩</span></div>
+          <div class="day" onclick="handleDayClick(7)"><span class="emoji" title="🥳">🥳</span></div>
+          <div class="day" onclick="handleDayClick(8)"><span class="emoji" title="😂">😂</span></div>
+          <div class="day" onclick="handleDayClick(9)"><span class="emoji" title="😜">😜</span></div>
+          <div class="day" onclick="handleDayClick(10)"><span class="emoji" title="😴">😴</span></div>
+          <div class="day" onclick="handleDayClick(11)">11</div>
+          <div class="day" onclick="handleDayClick(12)">12</div>
+          <div class="day" onclick="handleDayClick(13)">13</div>
+          <div class="day" onclick="handleDayClick(14)">14</div>
+          <div class="day" onclick="handleDayClick(15)">15</div>
+          <div class="day" onclick="handleDayClick(16)">16</div>
+          <div class="day" onclick="handleDayClick(17)">17</div>
+          <div class="day" onclick="handleDayClick(18)">18</div>
+          <div class="day" onclick="handleDayClick(19)">19</div>
+          <div class="day" onclick="handleDayClick(20)">20</div>
+          <div class="day" onclick="handleDayClick(21)">21</div>
+          <div class="day" onclick="handleDayClick(22)">22</div>
+          <div class="day" onclick="handleDayClick(23)">23</div>
+          <div class="day" onclick="handleDayClick(24)">24</div>
+          <div class="day" onclick="handleDayClick(25)">25</div>
+          <div class="day" onclick="handleDayClick(26)">26</div>
+          <div class="day" onclick="handleDayClick(27)">27</div>
+          <div class="day" onclick="handleDayClick(28)">28</div>
+          <div class="day" onclick="handleDayClick(29)">29</div>
+          <div class="day" onclick="handleDayClick(30)">30</div>
+          <div class="day" onclick="handleDayClick(31)">31</div>
+        </div>
+      </div>
+
+
+        <div class="mood-header">
+        
+
+    <div class = "journal-container">
+      <div class="journal-bar">
+        Let's Journal!
+    </div>
+        <div class="journal-section">
+            <p class="journal-prompt">List 3 things that made you happy this week</p>
+            <button type="button" id="journalButton">New Entry</button>
+        </div>
+    </div>
+    <div class = "main-content">
+    <div class = "analytics-container">
+        <h2 class = "analytics-title"> Analytics </h2>
+        <div class = "analytics-item">
+            <span class="color-indicator yellow"></span>
+            <span class="text">Mood tracking</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 30%;"></div>
+            </div>
+          </div>
+          <div class="analytics-item">
+            <span class="color-indicator orange"></span>
+            <span class="text">Text Description</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 70%;"></div> 
+            </div>
+          </div>
+          <div class="analytics-item">
+            <span class="color-indicator green"></span>
+            <span class="text">Text Description</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 50%;"></div>
+            </div>
+          </div>
+          <div class="analytics-item">
+            <span class="color-indicator purple"></span>
+            <span class="text">Text Description</span>
+            <div class="progress-bar-container">
+              <div class="progress-bar" style="width: 90%;"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+    <script>
+    function toggleDetails() {
+        var details = document.getElementById('details');
+        var notificationBar = document.querySelector('.notification-bar');
+        if (details.style.display === 'flex') {
+            details.style.display = 'none';
+            notificationBar.style.maxWidth = '50px';
+        } else {
+            details.style.display = 'flex';
+            notificationBar.style.maxWidth = '100%';
+        }
+        }
+    document.getElementById('journalButton').addEventListener('click', function() {
+    window.location.href = 'journal_page.html';
+    });
+
+    function handleDayClick(day) {
+    if (day <= new Date().getDate()) {
+      window.location.href = "emoji_slider.html";
+    } else {
+      alert("This date is in the future!");
+    }
+  }
+    </script>
+    </body>
+    </html>
